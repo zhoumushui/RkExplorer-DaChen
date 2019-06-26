@@ -194,4 +194,6 @@
     <string name="nfs_umount_ok">删除NFS服务器成功</string>
     <string name="nfs_mount_failed">添加[<xliff:g id="ss">%s</xliff:g>]服务器失败</string>
     <string name="nfs_add_example">Example:192.168.1.8:/nfstest</string>
+    
+    <string name="device_ssd_name">硬盘</string>
 </resources>

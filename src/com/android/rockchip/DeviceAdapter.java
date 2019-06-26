@@ -63,9 +63,11 @@ public class DeviceAdapter extends BaseAdapter
 				break;
 			case 1:
 				if(mounted){
-					resource_id=R.drawable.nav_sdcard1;
+					// resource_id=R.drawable.nav_sdcard1;
+					resource_id=R.drawable.nav_ssd1;
 				}else{
-					resource_id=R.drawable.nav_sdcard2;
+					// resource_id=R.drawable.nav_sdcard2;
+					resource_id=R.drawable.nav_ssd2;
 				}
 				break;
 			case 2:

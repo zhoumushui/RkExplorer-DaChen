@@ -141,6 +141,8 @@ import android.os.storage.VolumeInfo;
 public class RockExplorer extends Activity 
 	implements AdapterView.OnItemSelectedListener,OnSystemUiVisibilityChangeListener{
 	
+	private static final String PATH_SSD = "/mnt/media_rw/ssd_inode";
+	
 	final String TAG = "RkExplorer";
 	final boolean DEBUG = true;
 	private void LOG(String str)                                                                                                                                                                              
@@ -611,7 +613,7 @@ public class RockExplorer extends Activity
 		mEnablePaste = false;
     	mCopyFileUtils = new CopyFileUtils(mStorageManager);
 		mCopyFileUtils.setEventHandler(mHandler);
-		sdcard_dir = StorageUtils.getSDcardDir(mStorageManager);
+		sdcard_dir = PATH_SSD; // StorageUtils.getSDcardDir(mStorageManager);
 		mSDCardPaths = StorageUtils.getSdCardPaths(mStorageManager);
 		Log.i(TAG, "sdCardDir:" + sdcard_dir);
 		usb_dir = StorageUtils.getUsbDir(mStorageManager);
@@ -777,7 +779,8 @@ public class RockExplorer extends Activity
 			
 		//}
 		
-		Device sdCard = new Device("sdCard",this.getResources().getString(R.string.str_sdcard_name),sdcard_dir,R.drawable.sdcard,isMountSD());//isMountSD()
+		//Device sdCard = new Device("sdCard",this.getResources().getString(R.string.str_sdcard_name),sdcard_dir,R.drawable.sdcard,isMountSD());//isMountSD()
+		Device sdCard = new Device("sdCard",this.getResources().getString(R.string.device_ssd_name),sdcard_dir,R.drawable.nav_sata1,isMountSSD());//isMountSD()
 		mDevice.add(sdCard);
 		
 		Device usb = new Device("usb",this.getResources().getString(R.string.str_usb1_name),usb_dir,R.drawable.flash,isMountUSB());//usbIsMount()
@@ -3411,6 +3414,10 @@ public class RockExplorer extends Activity
     		return true;
     	}
     	return false; 	
+    }
+    
+    public boolean isMountSSD() {
+    	return true;
     }
     
     /*

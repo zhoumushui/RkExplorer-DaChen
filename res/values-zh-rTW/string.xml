@@ -180,4 +180,6 @@
 	<string name="del_error">失敗</string>
 	<string name="picture_error">錯誤</string>
 	<string name="empty_directory">目錄為空</string>
+	
+    <string name="device_ssd_name">硬盘</string>
 </resources>

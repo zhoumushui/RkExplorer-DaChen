@@ -208,4 +208,6 @@
     <string name="nfs_umount_ok">Remove nfs server success</string>
     <string name="nfs_mount_failed">Failed to mount [<xliff:g id="ss">%s</xliff:g>]</string>
     <string name="nfs_add_example">Example:192.168.1.8:/nfstest</string>
+    
+    <string name="device_ssd_name">SSD</string>
 </resources>
