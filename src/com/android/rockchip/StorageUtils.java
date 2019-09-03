@@ -147,6 +147,66 @@ public class StorageUtils {
         }
         return false;
     }
+    
+    public static String getSSDDir(StorageManager storageManager) {
+
+        final List<VolumeInfo> volumes = storageManager.getVolumes();
+        //Collections.sort(volumes, VolumeInfo.getDescriptionComparator());
+        for (VolumeInfo vol : volumes) {
+        	  Log.d("YHX", "VolumeInfo.Type=" + vol.getType());
+            if (vol.getType() == VolumeInfo.TYPE_PUBLIC) {
+                Log.d("YHX", "VolumeInfo.TYPE_PUBLIC");
+                Log.d("YHX", "Volume path:" + vol.getPath());
+                DiskInfo disk = vol.getDisk();
+                if (disk != null) {
+                    if (disk.isPcie()) {
+                        // usb dir
+//                        StorageVolume sv = vol.buildStorageVolume(context, context.getUserId(),
+//                                false);
+                        mUsbDirs = vol.path;
+                    }
+                }
+            }
+        }
+        
+        if (null != mUsbDirs) {
+          int end = mUsbDirs.lastIndexOf('/');
+            if (end > 0)    // case mUsbDirs = /xxx/xxx
+                return mUsbDirs.substring(0, end);
+            else            // case mUsbDirs = /xxx
+                return mUsbDirs;
+        	//return mUsbDirs;
+        } else {
+            return null;
+        }
+    }
+    
+    
+    public static List<String> getSSDPaths(StorageManager storageManager){
+
+    	List<String> ssdPaths = new ArrayList<String>();
+        final List<VolumeInfo> volumes = storageManager.getVolumes();
+        File sataDir = new File(getSataDir());
+        //Collections.sort(volumes, VolumeInfo.getDescriptionComparator());
+        for (VolumeInfo vol : volumes) {
+        	if (RockExplorer.SATA_ENABLED && vol.path != null && new File(vol.path).getName().equals(sataDir.getName())) {
+        		Log.d(TAG, "volume path maybe sata, skip " + vol.path);
+        		continue;
+        	}
+        	
+            if (vol.getType() == VolumeInfo.TYPE_PUBLIC) {
+                DiskInfo disk = vol.getDisk();
+                if (disk != null) {
+                    if (disk.isPcie()) {
+                    	ssdPaths.add(vol.path);
+                    }
+                }
+            }
+        }
+		
+		return ssdPaths;
+    
+    }
 
     public static String getUsbDir(StorageManager storageManager) {
 

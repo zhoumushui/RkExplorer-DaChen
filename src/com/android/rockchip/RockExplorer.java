@@ -613,7 +613,7 @@ public class RockExplorer extends Activity
 		mEnablePaste = false;
     	mCopyFileUtils = new CopyFileUtils(mStorageManager);
 		mCopyFileUtils.setEventHandler(mHandler);
-		sdcard_dir = PATH_SSD; // StorageUtils.getSDcardDir(mStorageManager);
+		sdcard_dir = StorageUtils.getSSDDir(mStorageManager); //PATH_SSD; // StorageUtils.getSDcardDir(mStorageManager);
 		mSDCardPaths = StorageUtils.getSdCardPaths(mStorageManager);
 		Log.i(TAG, "sdCardDir:" + sdcard_dir);
 		usb_dir = StorageUtils.getUsbDir(mStorageManager);
@@ -1005,6 +1005,10 @@ public class RockExplorer extends Activity
     		}
     	}
   };
+  
+  private void MyLog(String log){
+	  android.util.Log.i("AZ", log);
+  }
 
 	private String mCurrentDir = null;
 	private String mCurrentNfs = null;
@@ -1025,6 +1029,8 @@ public class RockExplorer extends Activity
 				return ;
 			String path = device.getPath();
 			String tag = device.getTag();
+			MyLog("onItemClick,path=" + path + ",tag=" + tag);
+			
 			//if (tag.equals("usb") && (usb_dir != null))
 			 //   path = usb_dir;
 			    

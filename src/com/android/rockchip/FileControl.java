@@ -106,7 +106,7 @@ public class FileControl {
         
         //requestWindowFeature(Window.FEATURE_CUSTOM_TITLE); 
         mStorageManager = storageManager;
-        sdcard_dir = StorageUtils.getSDcardDir(storageManager);
+        sdcard_dir = StorageUtils.getSSDDir(storageManager);
         usb_dir = StorageUtils.getUsbDir(storageManager);
         currently_parent = path;
         currently_path = path;
@@ -126,21 +126,23 @@ public class FileControl {
     		mRockExplorer.mWaitDialog.setCancelable(true);
     	}
 
-        sdcard_dir = StorageUtils.getSDcardDir(mStorageManager);
+        sdcard_dir = StorageUtils.getSSDDir(mStorageManager);
         usb_dir = StorageUtils.getUsbDir(mStorageManager);
     	Log.i(TAG, "enter fill ---------------  file run sdcard_dir " + sdcard_dir);
     	Log.i(TAG, "enter fill ---------------  file run usb_dir " + usb_dir);
     	Log.i(TAG, "enter fill ---------------  file run files.getPath() " + files.getPath());
     	List<String> sdCardPaths = StorageUtils.getSdCardPaths((StorageManager)mRockExplorer.getSystemService(Context.STORAGE_SERVICE));
     	List<String> usbPaths = StorageUtils.getUsbPaths((StorageManager)mRockExplorer.getSystemService(Context.STORAGE_SERVICE));
+    	List<String> ssdPaths = StorageUtils.getSSDPaths((StorageManager)mRockExplorer.getSystemService(Context.STORAGE_SERVICE));
+    	
     	if(mStorageType.equals("sdCard") && files.getPath().equals(sdcard_dir)){
     		Log.i(TAG, "enter sd file run");
-        	for (File file : files.listFiles()){
+    	  	for (File file : files.listFiles()){
     			if(!is_enable_fill)
     				break;
     			Log.i(TAG, "filePath:" + file.getPath());
     			if(file.canRead()  && !file.isHidden()){
-    				if(sdCardPaths.contains(file.getPath())){
+    				if(ssdPaths.contains(file.getPath())){
     					if(file.isDirectory()){		
     						folder_array.add(0, changeFiletoFileInfo(file)); 
     					}else{
