@@ -613,7 +613,7 @@ public class RockExplorer extends Activity
 		mEnablePaste = false;
     	mCopyFileUtils = new CopyFileUtils(mStorageManager);
 		mCopyFileUtils.setEventHandler(mHandler);
-		sdcard_dir = StorageUtils.getSSDDir(mStorageManager); //PATH_SSD; // StorageUtils.getSDcardDir(mStorageManager);
+		sdcard_dir = PATH_SSD; //StorageUtils.getSSDDir(mStorageManager); // StorageUtils.getSDcardDir(mStorageManager);
 		mSDCardPaths = StorageUtils.getSdCardPaths(mStorageManager);
 		Log.i(TAG, "sdCardDir:" + sdcard_dir);
 		usb_dir = StorageUtils.getUsbDir(mStorageManager);

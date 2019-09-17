@@ -148,7 +148,11 @@ public class StorageUtils {
         return false;
     }
     
-    public static String getSSDDir(StorageManager storageManager) {
+    public static String  getSSDDir(StorageManager storageManager){
+    	return "/mnt/media_rw/ssd_inode";
+    }
+    
+    public static String getSSDDirOld(StorageManager storageManager) {
 
         final List<VolumeInfo> volumes = storageManager.getVolumes();
         //Collections.sort(volumes, VolumeInfo.getDescriptionComparator());
