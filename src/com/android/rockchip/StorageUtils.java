@@ -163,12 +163,14 @@ public class StorageUtils {
                 Log.d("YHX", "Volume path:" + vol.getPath());
                 DiskInfo disk = vol.getDisk();
                 if (disk != null) {
+                	/*
                     if (disk.isPcie()) {
                         // usb dir
 //                        StorageVolume sv = vol.buildStorageVolume(context, context.getUserId(),
 //                                false);
                         mUsbDirs = vol.path;
                     }
+                    */
                 }
             }
         }
@@ -201,9 +203,11 @@ public class StorageUtils {
             if (vol.getType() == VolumeInfo.TYPE_PUBLIC) {
                 DiskInfo disk = vol.getDisk();
                 if (disk != null) {
+                	/*
                     if (disk.isPcie()) {
                     	ssdPaths.add(vol.path);
                     }
+                    */
                 }
             }
         }
